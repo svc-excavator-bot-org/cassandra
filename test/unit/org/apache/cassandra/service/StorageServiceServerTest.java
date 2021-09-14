@@ -153,7 +153,6 @@ public class StorageServiceServerTest
             StorageService.instance.enableNode();
             assertThat(StorageService.instance.getOperationMode()).isEqualTo(mode.toString());
         }
-        StorageService.instance.stopClient();
     }
 
     @Test
