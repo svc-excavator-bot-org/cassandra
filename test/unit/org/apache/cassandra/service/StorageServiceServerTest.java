@@ -81,6 +81,9 @@ public class StorageServiceServerTest
 
     @Before
     public void setStartMode() {
+        CrossVpcIpMappingHandshaker.instance.stop();
+        DatabaseDescriptor.setCrossVpcHostnameSwapping(false);
+        DatabaseDescriptor.setCrossVpcIpSwapping(false);
         StorageService.instance.setOperationMode(StorageService.Mode.STARTING);
     }
 
