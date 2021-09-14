@@ -81,7 +81,8 @@ public class SSLFactoryTest
     {
         InetAddress localhost = InetAddress.getLocalHost();
         InetAddress input = InetAddress.getByName("10.0.0.1");
-        assertThat(input.getHostName()).isEqualTo("10.0.0.1");
+        assertThat("127.0.0.1").isNotEqualTo(input.getHostAddress());
+        assertThat("localhost").isNotEqualTo(input.getHostName());
 
         InetAddressHostname name = new InetAddressHostname("localhost");
         InetAddressIp internal = new InetAddressIp(input.getHostAddress());
@@ -111,7 +112,8 @@ public class SSLFactoryTest
     {
         InetAddress localhost = InetAddress.getLocalHost();
         InetAddress input = InetAddress.getByName("10.0.0.1");
-        assertThat(input.getHostName()).isEqualTo("10.0.0.1");
+        assertThat("127.0.0.1").isNotEqualTo(input.getHostAddress());
+        assertThat("localhost").isNotEqualTo(input.getHostName());
 
         InetAddressHostname name = new InetAddressHostname("localhost");
         InetAddressIp internal = new InetAddressIp(input.getHostAddress());
