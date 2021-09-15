@@ -43,11 +43,18 @@ import org.apache.cassandra.config.DatabaseDescriptor;
 import org.apache.cassandra.config.EncryptionOptions;
 import org.apache.cassandra.utils.FBUtilities;
 
+import org.junit.AfterClass;
 import org.junit.Test;
 
 public class SSLFactoryTest
 {
     private static final int PORT = 55123;
+
+    @AfterClass
+    public static void after() {
+        DatabaseDescriptor.setCrossVpcHostnameSwapping(false);
+        DatabaseDescriptor.setCrossVpcIpSwapping(false);
+    }
 
     @Test
     public void testFilterCipherSuites()

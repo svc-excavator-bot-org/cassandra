@@ -26,6 +26,7 @@ import java.util.UUID;
 
 import com.google.common.collect.ImmutableMap;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -65,6 +66,8 @@ public class GossiperTest
     public void after()
     {
         Gossiper.instance.stop();
+        DatabaseDescriptor.setCrossVpcHostnameSwapping(false);
+        DatabaseDescriptor.setCrossVpcIpSwapping(false);
     }
 
     @Test

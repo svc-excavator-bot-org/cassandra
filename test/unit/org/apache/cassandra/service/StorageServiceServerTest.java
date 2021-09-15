@@ -32,6 +32,8 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
 
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
@@ -82,10 +84,14 @@ public class StorageServiceServerTest
 
     @Before
     public void setStartMode() {
-//        CrossVpcIpMappingHandshaker.instance.stop();
-//        DatabaseDescriptor.setCrossVpcHostnameSwapping(false);
-//        DatabaseDescriptor.setCrossVpcIpSwapping(false);
         StorageService.instance.setOperationMode(StorageService.Mode.STARTING);
+    }
+
+    @After
+    public void after() {
+        CrossVpcIpMappingHandshaker.instance.stop();
+        DatabaseDescriptor.setCrossVpcHostnameSwapping(false);
+        DatabaseDescriptor.setCrossVpcIpSwapping(false);
     }
 
     @Test
@@ -119,7 +125,6 @@ public class StorageServiceServerTest
     }
 
     @Test
-    @Ignore
     public void disableNode_stopsCrossVpcHandshake() {
         DatabaseDescriptor.setCrossVpcIpSwapping(true);
         SchemaLoader.mkdirs();
@@ -156,7 +161,6 @@ public class StorageServiceServerTest
     }
 
     @Test
-    @Ignore
     public void enableNode_startsCrossVpcHandshake() {
         DatabaseDescriptor.setCrossVpcIpSwapping(true);
         SchemaLoader.mkdirs();
